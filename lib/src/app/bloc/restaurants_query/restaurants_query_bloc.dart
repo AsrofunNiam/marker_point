@@ -3,6 +3,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:marker_point/constant/string.dart';
 import 'package:marker_point/src/app/model/restaurants.dart';
 import 'package:marker_point/src/app/resource/restaurants_repository.dart';
+import 'package:marker_point/src/app/resource/user_repository.dart';
 
 part 'restaurants_query_bloc.freezed.dart';
 
@@ -31,6 +32,7 @@ class RestaurantsQueryBloc
           try {
             final restaurants =
                 await RestaurantsRepository.instance.restaurantsFetch(
+              // accessToken: TokenRepository.instance.tokenRepository!
               accessToken:
                   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDAsImlhdCI6MTY4ODMxMTg2OSwiZXhwIjoxNjkwOTAzODY5fQ.jjviLrgG0zXB5QM-SFUXG-byPyMOuUkO0KUtlWV2QBo',
             );

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marker_point/src/app/bloc/restaurants_query/restaurants_query_bloc.dart';
+import 'package:marker_point/src/app/bloc/save_token/save_token_bloc.dart';
 import 'package:marker_point/src/app/model/authentication.dart';
 import 'package:marker_point/src/app/model/restaurants.dart';
-import 'package:marker_point/src/app/model/user.dart';
+import 'package:marker_point/src/app/resource/user_repository.dart';
 
 class HomeRestaurant extends StatefulWidget {
   const HomeRestaurant._({required this.user});
@@ -20,6 +21,10 @@ class HomeRestaurant extends StatefulWidget {
             create: (context) =>
                 RestaurantsQueryBloc()..add(const RestaurantsQueryEvent.get()),
           ),
+          BlocProvider(
+            create: (context) => SaveTokenBloc(),
+            // ..add(SaveTokenEvent.login(user.authentication))
+          )
         ],
         child: HomeRestaurant._(
           user: user,
@@ -33,6 +38,21 @@ class HomeRestaurant extends StatefulWidget {
 }
 
 class _RestaurantCreateButtonState extends State<HomeRestaurant> {
+  void getToken() {
+    context
+        .read<SaveTokenBloc>()
+        .add(SaveTokenEvent.login(widget.user.authentication));
+  }
+
+  @override
+  void initState() {
+    UserRepository.instance.saveUserRepository(widget.user.authentication);
+    // context
+    //     .read<SaveTokenBloc>()
+    //     .add(SaveTokenEvent.login(widget.user.authentication));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Restaurants> restaurants = [];
