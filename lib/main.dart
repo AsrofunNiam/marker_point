@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marker_point/src/app/bloc/login/login_bloc.dart';
 import 'package:marker_point/src/app/view/widget/login/login_page.dart';
 
-import 'src/app/bloc/save_token/save_token_bloc.dart';
-
 void main() {
   runApp(const MainBatchFive());
 }

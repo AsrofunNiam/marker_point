@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:marker_point/constant/string.dart';
 import 'package:marker_point/src/app/bloc/login/login_bloc.dart';
-import 'package:marker_point/src/app/bloc/save_token/save_token_bloc.dart';
-import 'package:marker_point/src/app/resource/user_repository.dart';
 import 'package:marker_point/src/app/view/widget/home_page/home_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -38,7 +36,6 @@ class _LoginPageState extends State<LoginPage> {
           orElse: () {},
           success: (user) {
             if (user!.authentication.isNotEmpty) {
-              
               // BlocListener<SaveTokenBloc, SaveTokenState>(
               // bloc: widget.saveTokenBloc,
               // listener: (context, stateToken) {

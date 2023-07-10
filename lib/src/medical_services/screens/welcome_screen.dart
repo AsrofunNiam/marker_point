@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:marker_point/src/medical_services/login_screen.dart';
+import 'package:marker_point/src/medical_services/screens/login_screen.dart';
+import 'package:marker_point/src/medical_services/screens/signup_screen.dart';
+import 'package:marker_point/src/medical_services/widgets/navbar_roots.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -20,7 +22,12 @@ class WelcomeScreen extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const NavBarRoots();
+                    }));
+                  },
                   child: const Text(
                     'SKIP',
                     style: TextStyle(fontSize: 20),
@@ -30,7 +37,7 @@ class WelcomeScreen extends StatelessWidget {
               height: 50,
             ),
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Image.asset('assets/images/medicine.png'),
             ),
             const SizedBox(
@@ -64,7 +71,12 @@ class WelcomeScreen extends StatelessWidget {
                   color: const Color.fromARGB(235, 85, 94, 218),
                   borderRadius: BorderRadius.circular(10),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const SignUpScreen();
+                      }));
+                    },
                     child: const Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: 15, horizontal: 40),

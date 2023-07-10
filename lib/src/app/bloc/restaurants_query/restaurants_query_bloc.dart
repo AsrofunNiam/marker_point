@@ -3,7 +3,6 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:marker_point/constant/string.dart';
 import 'package:marker_point/src/app/model/restaurants.dart';
 import 'package:marker_point/src/app/resource/restaurants_repository.dart';
-import 'package:marker_point/src/app/resource/user_repository.dart';
 
 part 'restaurants_query_bloc.freezed.dart';
 

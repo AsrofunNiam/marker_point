@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:marker_point/src/app/resource/user_repository.dart';
 
 part 'save_token_bloc.freezed.dart';
 

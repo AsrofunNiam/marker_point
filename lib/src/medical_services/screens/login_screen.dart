@@ -1,64 +1,48 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:marker_point/src/medical_services/login_screen.dart';
+import 'package:marker_point/src/medical_services/screens/signup_screen.dart';
+import 'package:marker_point/src/medical_services/screens/welcome_screen.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _LoginScreenState extends State<LoginScreen> {
+  bool passToggle = true;
   @override
   Widget build(BuildContext context) {
-    bool? passToggle = true;
     return Material(
       color: Colors.white,
       child: SingleChildScrollView(
-        child: Column(
+        child: SafeArea(
+            child: Column(
           children: [
             const SizedBox(
-              height: 10,
+              height: 25,
             ),
             Padding(
               padding: const EdgeInsets.all(20),
-              child: Image.asset('assets/images/add.png'),
+              child: Image.asset('assets/images/loading.png'),
             ),
             const SizedBox(
-              height: 15,
+              height: 10,
             ),
             const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+              padding: EdgeInsets.all(12),
               child: TextField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    label: Text('Full Name'),
+                    label: Text('Input User Name'),
                     prefixIcon: Icon(Icons.person)),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-              child: TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text('Email Address'),
-                    prefixIcon: Icon(Icons.email)),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-              child: TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text('Phone Number'),
-                    prefixIcon: Icon(Icons.email)),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(12),
               child: TextField(
-                obscureText: passToggle ?? false,
+                obscureText: passToggle ? true : false,
                 decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     label: const Text('Input Password'),
@@ -73,8 +57,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         setState(() {});
                       },
                       child: passToggle
-                          ? Icon(CupertinoIcons.eye_slash_fill)
-                          : const Icon(CupertinoIcons.eye_fill), // belum clear
+                          ? const Icon(CupertinoIcons.eye_slash_fill)
+                          : const Icon(CupertinoIcons.eye_fill),
                     )),
               ),
             ),
@@ -90,20 +74,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   borderRadius: BorderRadius.circular(10),
                   child: InkWell(
                     onTap: () {
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (context) {
-                      //   return const LoginScreen();
-                      // }));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const LoginScreen();
+                      }));
                     },
                     child: const Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: 15, horizontal: 40),
                         child: Center(
                           child: Text(
-                            'Create Account',
+                            'Log In',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 23,
+                                fontSize: 25,
                                 fontWeight: FontWeight.bold),
                           ),
                         )),
@@ -112,33 +96,56 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'Allready have account ?',
+                  'Dont have any account ?',
                   style: TextStyle(color: Colors.black, fontSize: 17),
                 ),
                 TextButton(
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return const LoginScreen();
+                        return const SignUpScreen();
                       }));
                     },
                     child: const Text(
-                      'Log In',
+                      'Create Account',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 17,
                           color: Color.fromARGB(235, 85, 94, 218)),
                     ))
               ],
-            )
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Back to welcomeScreen  ?',
+                  style: TextStyle(color: Colors.black, fontSize: 17),
+                ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const WelcomeScreen();
+                      }));
+                    },
+                    child: const Text(
+                      'Welcome Screen',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
+                          color: Color.fromARGB(235, 85, 94, 218)),
+                    ))
+              ],
+            ),
           ],
-        ),
+        )),
       ),
     );
   }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marker_point/src/app/bloc/login/login_bloc.dart';
-import 'package:marker_point/src/medical_services/welcome_screen.dart';
+
+import 'src/medical_services/screens/welcome_screen.dart';
 
 void main() {
   runApp(const MedicalServices());
