@@ -21,6 +21,7 @@ Restaurants _$RestaurantsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Restaurants {
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'attributes', fromJson: RestaurantsAttribute.fromJson)
   RestaurantsAttribute? get restaurantsAttribute =>
       throw _privateConstructorUsedError;
 
@@ -36,7 +37,10 @@ abstract class $RestaurantsCopyWith<$Res> {
           Restaurants value, $Res Function(Restaurants) then) =
       _$RestaurantsCopyWithImpl<$Res, Restaurants>;
   @useResult
-  $Res call({int? id, RestaurantsAttribute? restaurantsAttribute});
+  $Res call(
+      {int? id,
+      @JsonKey(name: 'attributes', fromJson: RestaurantsAttribute.fromJson)
+      RestaurantsAttribute? restaurantsAttribute});
 
   $RestaurantsAttributeCopyWith<$Res>? get restaurantsAttribute;
 }
@@ -91,7 +95,10 @@ abstract class _$$_RestaurantsCopyWith<$Res>
       __$$_RestaurantsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, RestaurantsAttribute? restaurantsAttribute});
+  $Res call(
+      {int? id,
+      @JsonKey(name: 'attributes', fromJson: RestaurantsAttribute.fromJson)
+      RestaurantsAttribute? restaurantsAttribute});
 
   @override
   $RestaurantsAttributeCopyWith<$Res>? get restaurantsAttribute;
@@ -127,7 +134,11 @@ class __$$_RestaurantsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Restaurants extends _Restaurants {
-  _$_Restaurants({this.id, this.restaurantsAttribute}) : super._();
+  _$_Restaurants(
+      {this.id,
+      @JsonKey(name: 'attributes', fromJson: RestaurantsAttribute.fromJson)
+      required this.restaurantsAttribute})
+      : super._();
 
   factory _$_Restaurants.fromJson(Map<String, dynamic> json) =>
       _$$_RestaurantsFromJson(json);
@@ -135,6 +146,7 @@ class _$_Restaurants extends _Restaurants {
   @override
   final int? id;
   @override
+  @JsonKey(name: 'attributes', fromJson: RestaurantsAttribute.fromJson)
   final RestaurantsAttribute? restaurantsAttribute;
 
   @override
@@ -172,8 +184,10 @@ class _$_Restaurants extends _Restaurants {
 
 abstract class _Restaurants extends Restaurants {
   factory _Restaurants(
-      {final int? id,
-      final RestaurantsAttribute? restaurantsAttribute}) = _$_Restaurants;
+          {final int? id,
+          @JsonKey(name: 'attributes', fromJson: RestaurantsAttribute.fromJson)
+          required final RestaurantsAttribute? restaurantsAttribute}) =
+      _$_Restaurants;
   _Restaurants._() : super._();
 
   factory _Restaurants.fromJson(Map<String, dynamic> json) =
@@ -182,6 +196,7 @@ abstract class _Restaurants extends Restaurants {
   @override
   int? get id;
   @override
+  @JsonKey(name: 'attributes', fromJson: RestaurantsAttribute.fromJson)
   RestaurantsAttribute? get restaurantsAttribute;
   @override
   @JsonKey(ignore: true)

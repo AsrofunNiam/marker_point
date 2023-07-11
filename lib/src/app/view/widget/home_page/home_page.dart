@@ -23,7 +23,6 @@ class HomeRestaurant extends StatefulWidget {
           ),
           BlocProvider(
             create: (context) => SaveTokenBloc(),
-            // ..add(SaveTokenEvent.login(user.authentication))
           )
         ],
         child: HomeRestaurant._(
@@ -38,19 +37,10 @@ class HomeRestaurant extends StatefulWidget {
 }
 
 class _RestaurantCreateButtonState extends State<HomeRestaurant> {
-  void getToken() {
+  void getToken() async {
     context
         .read<SaveTokenBloc>()
         .add(SaveTokenEvent.login(widget.user.authentication));
-  }
-
-  @override
-  void initState() {
-    UserRepository.instance.saveUserRepository(widget.user.authentication);
-    // context
-    //     .read<SaveTokenBloc>()
-    //     .add(SaveTokenEvent.login(widget.user.authentication));
-    super.initState();
   }
 
   @override
@@ -67,17 +57,67 @@ class _RestaurantCreateButtonState extends State<HomeRestaurant> {
         return Scaffold(
           appBar: AppBar(),
           body: ListView.builder(
+            scrollDirection: Axis.vertical,
             itemCount: restaurants.length,
             itemBuilder: (context, index) {
-              return ListTile(
-                title: Column(
-                  children: [
-                    Text(restaurants[index].id.toString()),
-                  ],
+              return Container(
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color.fromARGB(235, 126, 133, 240),
+                          blurRadius: 4,
+                          spreadRadius: 2)
+                    ]),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width / 1.5,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: const CircleAvatar(
+                          radius: 25,
+                          backgroundImage:
+                              AssetImage('assets/images/loading.png'),
+                        ),
+                        title: Text(
+                          restaurants[index].restaurantsAttribute!.name!,
+                          style: const TextStyle(fontWeight: FontWeight.w500),
+                        ),
+                        subtitle: Text(restaurants[index]
+                            .restaurantsAttribute!
+                            .description!),
+                        trailing: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              size: 20,
+                            ),
+                            Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              size: 20,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              '4.7',
+                              style: TextStyle(color: Colors.black),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               );
             },
-            scrollDirection: Axis.vertical,
           ),
         );
       },

@@ -8,7 +8,8 @@ part 'restaurants.g.dart';
 class Restaurants with _$Restaurants {
   factory Restaurants({
     int? id,
-    RestaurantsAttribute? restaurantsAttribute,
+    @JsonKey(name: 'attributes', fromJson: RestaurantsAttribute.fromJson)
+    required RestaurantsAttribute? restaurantsAttribute,
   }) = _Restaurants;
   const Restaurants._();
 

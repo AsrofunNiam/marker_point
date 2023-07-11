@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:marker_point/constant/string.dart';
 import 'package:marker_point/src/app/bloc/login/login_bloc.dart';
+import 'package:marker_point/src/app/resource/user_repository.dart';
 import 'package:marker_point/src/app/view/widget/home_page/home_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,6 +22,13 @@ class _LoginPageState extends State<LoginPage> {
     errorText: pleaseFillOutThisField,
   );
 
+  @override
+  void initState() {
+    print(UserRepository.instance.tokenRepository);
+    // TODO: implement initState
+    super.initState();
+  }
+
   void getLogin() {
     late LoginEvent event;
     event = LoginEvent.submit(
@@ -36,18 +44,7 @@ class _LoginPageState extends State<LoginPage> {
           orElse: () {},
           success: (user) {
             if (user!.authentication.isNotEmpty) {
-              // BlocListener<SaveTokenBloc, SaveTokenState>(
-              // bloc: widget.saveTokenBloc,
-              // listener: (context, stateToken) {
-              //   stateToken.maybeWhen(
-              //     orElse: () {},
-              //     authenticated: (accessToken) {
-              //       TokenRepository.instance
-              //           .setUserTokenRepository(user.authentication);
-              //     },
-              //   );
-              // });
-
+              UserRepository.instance.saveUserRepository(user.authentication);
               Navigator.push(context, HomeRestaurant.route(user: user));
             }
           },
